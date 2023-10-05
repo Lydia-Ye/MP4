@@ -1,3 +1,5 @@
+package structures;
+
 /**
  * Exceptions that indicate that a key is not in an associative array
  * (dictionary, map, etc.).
