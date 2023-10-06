@@ -71,7 +71,7 @@ public class AssociativeArray<K, V> {
     // this for loop turns every KV pairs in the associative array to an string
     for (int i = 0; i < pairs.length - 1; i++) {
       if (pairs[i] != null) {
-        AAStr = AAStr + pairs[i].toString() + ", "; 
+        AAStr = AAStr + pairs[i].key.toString() + " : " + pairs[i].value.toString() + ", "; 
       } // if
     } // for 
     AAStr = AAStr.substring(0, AAStr.length() - 2);
