@@ -67,11 +67,14 @@ public class AssociativeArray<K, V> {
    * Convert the array to a string.
    */
   public String toString() {
-  String AAStr = "";
-  // this for loop turns every KV pairs in the associative array to an string
-  for (int i = 0; i < pairs.length; i++) {
-    AAStr = AAStr + pairs[i].toString() + ", "; 
-  } // for
+    String AAStr = "";
+    // this for loop turns every KV pairs in the associative array to an string
+    for (int i = 0; i < pairs.length - 1; i++) {
+      if (pairs[i] != null) {
+        AAStr = AAStr + pairs[i].toString() + ", "; 
+      } // if
+    } // for 
+    AAStr = AAStr.substring(0, AAStr.length() - 2);
     return "{" + AAStr + "}"; 
   } // toString()
 
@@ -89,20 +92,26 @@ public class AssociativeArray<K, V> {
 
     for (int i = 0; i < this.size; i++) {
       // check if key is already in the array
-      if (this.pairs[i].key == key) {
+      if (this.pairs[i] == null) {
+        if (hasFirstNull == false) {
+          firstNullAt = i;
+        hasFirstNull = true;
+        } //
+        i++;
+      } else if (this.pairs[i].key == key) {
         this.pairs[i].value = value;
         return;
       // find the index of the first null if key is not in the array
-      } else if ((this.pairs[i].key == null) && (hasFirstNull == false)) {
-        firstNullAt = i;
-        hasFirstNull = true;
       } // if
     } // for
 
     // put key and value in the position of first null if key is not already 
     // in the array
-    this.pairs[firstNullAt].key = key;
-    this.pairs[firstNullAt].value = value;
+    this.pairs[firstNullAt] = new KVPair<K,V>(key, value);
+
+    // inncrement size
+    size++;
+
     return;
   } // set(K,V)
 
@@ -131,7 +140,9 @@ public class AssociativeArray<K, V> {
   public boolean hasKey(K key) {
     for (int i = 0; i < this.size; i++) {
       // return true if key if found in the array
-      if (this.pairs[i].key == key) {
+      if (this.pairs[i] == null) {
+        i++;
+      } else if (this.pairs[i].key == key) {
         return true;
       } // if
     } // for
@@ -147,11 +158,12 @@ public class AssociativeArray<K, V> {
    */
   public void remove(K key) {
     for (int i = 0; i < this.size; i++) {
-      if (this.pairs[i].key == key) {
+      if (this.pairs[i] == null) {
+        i++;
+      } else if (this.pairs[i].key == key) {
         // if key is found in the array, then remove key and the corresponding 
         // value by setting them to null
-        this.pairs[i].key = null;
-        this.pairs[i].value = null; 
+        this.pairs[i] = null;
         return;
       } // if
     } // for
