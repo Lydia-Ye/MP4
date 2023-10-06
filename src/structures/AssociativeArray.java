@@ -70,9 +70,9 @@ public class AssociativeArray<K, V> {
   String AAStr = "";
   // this for loop turns every KV pairs in the associative array to an string
   for (int i = 0; i < pairs.length; i++) {
-    AAStr = AAStr + pairs[i].toString() + "\n"; 
+    AAStr = AAStr + pairs[i].toString() + ", "; 
   } // for
-    return "{AAstr}"; 
+    return "{" + AAStr + "}"; 
   } // toString()
 
   // +----------------+----------------------------------------------
@@ -84,7 +84,26 @@ public class AssociativeArray<K, V> {
    * get(key) will return value.
    */
   public void set(K key, V value) {
-    // STUB
+    boolean hasFirstNull = false;
+    int firstNullAt = 0;
+
+    for (int i = 0; i < this.size; i++) {
+      // check if key is already in the array
+      if (this.pairs[i].key == key) {
+        this.pairs[i].value = value;
+        return;
+      // find the index of the first null if key is not in the array
+      } else if ((this.pairs[i].key == null) && (hasFirstNull == false)) {
+        firstNullAt = i;
+        hasFirstNull = true;
+      } // if
+    } // for
+
+    // put key and value in the position of first null if key is not already 
+    // in the array
+    this.pairs[firstNullAt].key = key;
+    this.pairs[firstNullAt].value = value;
+    return;
   } // set(K,V)
 
   /**
@@ -95,14 +114,30 @@ public class AssociativeArray<K, V> {
    *                              array.
    */
   public V get(K key) throws KeyNotFoundException {
-    return null; // STUB
+    // Check if key is in the array; if yes, return the corresponding value
+    for (int i = 0; i < this.size; i++) {
+      if (this.pairs[i].key == key) {
+        return this.pairs[i].value;
+      } // if
+    } // for
+
+    // Throw exception if key is not found in array
+    throw new KeyNotFoundException();
   } // get(K)
 
   /**
    * Determine if key appears in the associative array.
    */
   public boolean hasKey(K key) {
-    return false; // STUB
+    for (int i = 0; i < this.size; i++) {
+      // return true if key if found in the array
+      if (this.pairs[i].key == key) {
+        return true;
+      } // if
+    } // for
+
+    // return false if key is not found in the array
+    return false; 
   } // hasKey(K)
 
   /**
@@ -111,7 +146,18 @@ public class AssociativeArray<K, V> {
    * in the associative array, does nothing.
    */
   public void remove(K key) {
-    // STUB
+    for (int i = 0; i < this.size; i++) {
+      if (this.pairs[i].key == key) {
+        // if key is found in the array, then remove key and the corresponding 
+        // value by setting them to null
+        this.pairs[i].key = null;
+        this.pairs[i].value = null; 
+        return;
+      } // if
+    } // for
+
+    // Do nothing if key is not found
+    return;
   } // remove(K)
 
   /**
@@ -137,7 +183,12 @@ public class AssociativeArray<K, V> {
    * If no such entry is found, throws an exception.
    */
   public int find(K key) throws KeyNotFoundException {
-    throw new KeyNotFoundException();   // STUB
+    for (int i = 0; i < size; i++) {
+      if (this.pairs[i].key == key) {
+        return i;
+      } // if
+    } // for
+    throw new KeyNotFoundException(); 
   } // find(K)
 
 } // class AssociativeArray
