@@ -1,18 +1,18 @@
 ## Getting Started
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Author: Lydia Ye
 
-## Folder Structure
+Date: Oct. 5, 2023
 
-The workspace contains two folders by default, where:
+This repository contains classes that implements associative array using array in java.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+## References
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+Starter codes from Prof. Sam Rebelsky.
 
-## Dependency Management
+Readings and labs from course website:
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+- When things go wrong: Exceptions in Java ( https://rebelsky.cs.grinnell.edu/Courses/CSC207/2023Fa/readings/exceptions.html)
+- Generics and parameteric polymorphism (https://rebelsky.cs.grinnell.edu/Courses/CSC207/2023Fa/readings/generics.html)
+- Lab: Java Generics (https://rebelsky.cs.grinnell.edu/Courses/CSC207/2023Fa/labs/generics.html)
