@@ -57,14 +57,22 @@ public class AssociativeArray<K, V> {
    * Create a copy of this AssociativeArray.
    */
   public AssociativeArray<K, V> clone() {
-    return null; // STUB
+    AssociativeArray<K,V> copy = new AssociativeArray<K,V>();
+    copy.pairs = this.pairs;
+    copy.size = this.size;
+    return copy;
   } // clone()
 
   /**
    * Convert the array to a string.
    */
   public String toString() {
-    return "{}"; // STUB
+  String AAStr = "";
+  // this for loop turns every KV pairs in the associative array to an string
+  for (int i = 0; i < pairs.length; i++) {
+    AAStr = AAStr + pairs[i].toString() + "\n"; 
+  } // for
+    return "{AAstr}"; 
   } // toString()
 
   // +----------------+----------------------------------------------
