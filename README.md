@@ -4,7 +4,7 @@ Author: Lydia Ye
 
 Date: Oct. 5, 2023
 
-This repository contains classes that implements associative array using array in java.
+This is a course project for CSC207 Objected Oriented Problem Solving. This repository contains classes that implements associative array using array in java.
 
 
 ## References
